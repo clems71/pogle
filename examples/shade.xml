@@ -1,0 +1,57 @@
+<shader version="400">
+	<uniforms>
+		uniform sampler2D depth;
+	</uniforms>
+
+	<vertex><![CDATA[
+
+		DEFINE_VAO_2D_DEFAULT
+
+		out block
+		{
+			vec2 pos;
+		} OUT;
+
+		void main(void)
+		{
+			OUT.pos = uv0.xy;
+		   	gl_Position = position;
+		}
+
+	]]></vertex>
+
+	<fragment><![CDATA[
+		in block
+		{
+			vec2 pos;
+		} IN;
+
+		out vec4 color;
+
+		void main (void)
+		{
+			float dx = 1.0 / 1024.0;
+			float dy = 1.0 / 1024.0;
+
+			vec3 right = texture(depth, IN.pos + vec2(dx, 0.0)).xyz;
+			vec3 top = texture(depth, IN.pos + vec2(0.0, dy)).xyz;
+			vec4 center = texture(depth, IN.pos).xyzw;
+
+			if (center.w <= 0.001)
+			{
+				discard;
+				return;
+			}
+
+			vec3 tangent = normalize(right - center.xyz);
+			vec3 bitangent = normalize(top - center.xyz);
+			vec3 normal = cross(tangent, bitangent);
+
+			vec3 ldir = normalize(vec3(10.0, 10.0, 10.0) - center.xyz);
+
+			float diff = max(dot(normal, ldir), 0.0);
+
+			color = vec4(vec3(diff * 0.6 + 0.4), 1.0);
+		}
+	]]></fragment>
+</shader>
