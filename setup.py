@@ -4,11 +4,11 @@ from setuptools import setup
 from Cython.Build import cythonize
 
 setup(
-    name = 'Python OpenGL Engine',
+    name = 'pogle',
     version = '0.1',
     author = 'Clement Jacob',
     author_email = 'clems71@gmail.com',
-    description = ('A simplistic OpenGL engine for python'),
+    description = ('Python OpenGL Engine : a simplistic OpenGL engine for python'),
     url='https://github.com/clems71/pogle',
     license = 'MIT',
     ext_modules = cythonize('pogle/*.pyx'),
