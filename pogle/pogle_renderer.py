@@ -149,7 +149,7 @@ class RenderBucket(object):
 
 class GLRenderer(object):
     DEFAULT_SHADER = """
-<shader version="410">
+<shader version="330">
     <vertex><![CDATA[
         DEFINE_VAO_3D_DEFAULT
 

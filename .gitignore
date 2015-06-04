@@ -58,3 +58,5 @@ target/
 
 # OS X
 .DS_Store
+
+pogle_math.c

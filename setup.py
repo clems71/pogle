@@ -13,9 +13,9 @@ setup(
     license = 'MIT',
     ext_modules = cythonize('pogle/*.pyx'),
     keywords = 'opengl',
-    packages=['pogle', ],
-    package_dir={'pogle': 'pogle'},
-    install_requires = ['pyopengl', 'numpy', 'pillow', 'pyglfw', 'cython'],
+    packages=['pogle', 'pyassimp', ],
+    package_dir={'pogle': 'pogle', 'pyassimp': 'pyassimp'},
+    install_requires = ['pyopengl', 'numpy', 'pillow', 'cyglfw3', 'cython', 'openexr'],
     classifiers=[
         'Development Status :: 3 - Alpha',
         'Topic :: Utilities',

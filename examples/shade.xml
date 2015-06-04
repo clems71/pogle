@@ -1,4 +1,4 @@
-<shader version="400">
+<shader version="330">
 	<uniforms>
 		uniform sampler2D depth;
 	</uniforms>
